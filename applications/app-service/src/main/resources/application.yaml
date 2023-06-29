@@ -11,6 +11,13 @@ spring:
       path: "/h2"
   profiles:
     include: null
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "pass"
+    driverClassName: org.postgresql.Driver
+  jpa:
+    databasePlatform: "org.hibernate.dialect.PostgreSQL9Dialect"
 management:
   endpoints:
     web:
