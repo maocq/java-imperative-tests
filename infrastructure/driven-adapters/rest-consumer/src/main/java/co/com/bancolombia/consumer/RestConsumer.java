@@ -7,20 +7,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static co.com.bancolombia.model.exceptions.message.TechnicalErrorMessage.TECHNICAL_RESTCLIENT_ERROR;
 
 @Service
-@RequiredArgsConstructor
 public class RestConsumer implements StatusAccountService {
 
-    @Value("${adapter.restconsumer.url}")
-    private String url;
+    //@Value("${adapter.restconsumer.url}")
+    private final String url;
     private final OkHttpClient client;
     private final ObjectMapper mapper;
+
+    public RestConsumer(OkHttpClient client, ObjectMapper mapper, @Value("${adapter.restconsumer.url}") String url) {
+        this.client = client;
+        this.mapper = mapper;
+        this.url = url;
+    }
 
 
     @Override
