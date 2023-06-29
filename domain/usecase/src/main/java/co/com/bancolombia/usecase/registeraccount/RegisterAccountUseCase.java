@@ -15,7 +15,7 @@ import static co.com.bancolombia.model.exceptions.message.BusinessErrorMessage.A
 @RequiredArgsConstructor
 public class RegisterAccountUseCase {
 
-    //private final StatusAccountService statusAccountService;
+    private final StatusAccountService statusAccountService;
     private final AccountRepository accountRepository;
 
     public Account register(long id, String name, String statusId) {
@@ -25,7 +25,7 @@ public class RegisterAccountUseCase {
         if (account.isPresent())
             throw new BusinessException(ACCOUNT_VALIDATION_ERROR);
 
-        //StatusAccount status = statusAccountService.getStatus(statusId);
-        return Account.newAccount(new Random().nextLong(), name, "");
+        StatusAccount status = statusAccountService.getStatus(statusId);
+        return Account.newAccount(new Random().nextLong(), name, status.getStatus());
     }
 }

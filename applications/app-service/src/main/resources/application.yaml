@@ -15,7 +15,7 @@ spring:
     url: "jdbc:postgresql://localhost:5432/postgres"
     username: "postgres"
     password: "pass"
-    driverClassName: org.postgresql.Driver
+    driverClassName: "org.postgresql.Driver"
   jpa:
     databasePlatform: "org.hibernate.dialect.PostgreSQL9Dialect"
 management:
@@ -27,3 +27,6 @@ management:
     health:
       probes:
         enabled: true
+adapter:
+  restconsumer:
+    url: "https://run.mocky.io"
